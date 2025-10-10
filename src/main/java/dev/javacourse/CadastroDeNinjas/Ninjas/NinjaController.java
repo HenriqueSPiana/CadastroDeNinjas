@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class NinjaController {
 
     @GetMapping("/boasvindas")
-    public String boasVindas(){
+    public String boasvindas(){
         return "essa é minha primeira mensagem nessa rota";
     }
 

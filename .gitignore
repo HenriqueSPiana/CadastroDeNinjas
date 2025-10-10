@@ -4,7 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 mensagem.txt
-
+.env
 ### STS ###
 .apt_generated
 .classpath
