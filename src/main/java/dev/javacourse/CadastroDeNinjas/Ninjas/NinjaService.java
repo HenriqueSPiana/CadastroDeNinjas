@@ -1,6 +1,5 @@
 package dev.javacourse.CadastroDeNinjas.Ninjas;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +26,10 @@ public class NinjaService {
         Optional<NinjaModel> ninjaModel = ninjaRepository.findById(id);
         return ninjaModel.orElse(null);
     };
+
+    public NinjaModel criarNinja(NinjaModel ninjaModel){
+        return ninjaRepository.save(ninjaModel);
+    }
 
 
 

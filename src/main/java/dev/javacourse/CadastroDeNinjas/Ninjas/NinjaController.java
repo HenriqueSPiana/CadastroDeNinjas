@@ -1,11 +1,7 @@
 package dev.javacourse.CadastroDeNinjas.Ninjas;
-
-
-import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/ninjas")
@@ -18,9 +14,10 @@ private NinjaService ninjaService;
     }
 //add ninja
 
-    @PostMapping("/adiciona")
-    public String adicionaNinja(){
-        return "ninja adicionado";
+    @PostMapping("/criar")
+    public NinjaModel criarNinja(@RequestBody NinjaModel ninjaModel){
+        var ninja = ninjaService.criarNinja(ninjaModel);
+        return ninja;
     }
 
     //Mostrar todos os ninjas

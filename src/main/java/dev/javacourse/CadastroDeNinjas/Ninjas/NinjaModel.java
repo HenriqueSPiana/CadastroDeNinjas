@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.LinkedList;
-
 @Entity
 @Table(name = "tb_cadastro")
 @Data
@@ -29,6 +27,9 @@ public class NinjaModel {
 
     @Column(name = "idade")
     private int idade;
+
+    @Column(name = "ranque")
+    private String ranque;
 
     //um ninja com uma unica missão, porem são varios ninjas para uma missão
     @ManyToOne
