@@ -1,9 +1,11 @@
 package dev.javacourse.CadastroDeNinjas.Ninjas;
 
 
+import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/ninjas")
@@ -21,18 +23,21 @@ private NinjaService ninjaService;
         return "ninja adicionado";
     }
 
-    //procurar ninja por id
+    //Mostrar todos os ninjas
 
     @GetMapping("/listar")
     public List<NinjaModel> listarNinjas(){
-        return ninjaService.listarNinjas();
+        List<NinjaModel> listaNinja = ninjaService.listarNinjas();
+        return listaNinja;
     }
 
 
-    //Mostrar todos os ninjas
-    @GetMapping("/busca")
-    public String buscaNinja(){
-        return "busca ninja";
+    //procurar ninja por id
+
+    @GetMapping("/listar/{id}")
+    public NinjaModel buscaNinja(@PathVariable Long id){
+        NinjaModel ninja = ninjaService.listarNinjasPorid(id);
+        return ninja;
     }
 
     //alterar ninja
