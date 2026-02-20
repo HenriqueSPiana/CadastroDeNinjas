@@ -10,12 +10,13 @@ public class NinjaService {
 
 
     private NinjaRepository ninjaRepository;
+    private NinjaMapper ninjaMapper;
 
 
-    public NinjaService(NinjaRepository ninjaRepository) {
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
         this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
     }
-
 
     //listar Todos os ninjas
     public List<NinjaModel> listarNinjas(){
@@ -34,12 +35,12 @@ public class NinjaService {
 
 
     //criar ninja
-    public NinjaModel criarNinja(NinjaModel ninjaModel){
+    public NinjaDTO criarNinja(NinjaDTO ninjaDTO){
 
-        if(ninjaRepository.existsByEmail(ninjaModel.getEmail())){
-            throw new IllegalArgumentException("ja existe um ninja com esse email");
-        }
-        return ninjaRepository.save(ninjaModel);
+        NinjaModel ninja = ninjaMapper.map(ninjaDTO);
+        ninjaRepository.save(ninja);
+        return ninjaMapper.map(ninja);
+
     }
 
     public void deletarNinja(Long id){
