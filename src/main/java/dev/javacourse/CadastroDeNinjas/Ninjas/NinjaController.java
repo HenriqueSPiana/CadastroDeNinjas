@@ -39,9 +39,9 @@ private NinjaService ninjaService;
 
     //alterar ninja
 
-    @PutMapping("/altera")
-    public String alteraNinja(){
-        return "altera ninja";
+    @PutMapping("/alterar/{id}")
+    public NinjaModel alteraNinja(@PathVariable Long id,@RequestBody NinjaModel ninjaAtualizado){
+        return ninjaService.alterarNinjasPorid(id,ninjaAtualizado);
     }
 
 
