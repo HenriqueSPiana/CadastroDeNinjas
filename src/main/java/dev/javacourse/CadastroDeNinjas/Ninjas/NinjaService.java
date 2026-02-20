@@ -22,13 +22,28 @@ public class NinjaService {
         return ninjaRepository.findAll();
     };
 
+
+
+    //listar por ninjas id
+
     public NinjaModel listarNinjasPorid(Long id){
         Optional<NinjaModel> ninjaModel = ninjaRepository.findById(id);
         return ninjaModel.orElse(null);
     };
 
+
+
+    //criar ninja
     public NinjaModel criarNinja(NinjaModel ninjaModel){
+
+        if(ninjaRepository.existsByEmail(ninjaModel.getEmail())){
+            throw new IllegalArgumentException("ja existe um ninja com esse email");
+        }
         return ninjaRepository.save(ninjaModel);
+    }
+
+    public void deletarNinja(Long id){
+        ninjaRepository.deleteById(id);
     }
 
 
