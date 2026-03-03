@@ -1,38 +1,14 @@
 package dev.javacourse.CadastroDeNinjas.Ninjas;
 
 
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-public class NinjaMapper {
-
-    public NinjaModel map(NinjaDTO ninjaDTO){
-
-        NinjaModel ninjaModel = new NinjaModel();
-
-        ninjaModel.setId(ninjaDTO.getId());
-        ninjaModel.setEmail(ninjaDTO.getEmail());
-        ninjaModel.setIdade(ninjaDTO.getIdade());
-        ninjaModel.setMissoes(ninjaDTO.getMissoes());
-        ninjaModel.setRanque(ninjaDTO.getRanque());
-        ninjaModel.setNome(ninjaDTO.getNome());
-
-        return ninjaModel;
-    }
+@Mapper(componentModel = "spring")
+public interface NinjaMapper {
 
 
-    public NinjaDTO map(NinjaModel ninjaModel){
+    NinjaModel map(NinjaDTO ninjaDTO);
 
-        NinjaDTO ninjaDTO = new NinjaDTO();
+    NinjaDTO map(NinjaModel ninjaModel);
 
-        ninjaDTO.setId(ninjaModel.getId());
-        ninjaDTO.setEmail(ninjaModel.getEmail());
-        ninjaDTO.setIdade(ninjaModel.getIdade());
-        ninjaDTO.setMissoes(ninjaModel.getMissoes());
-        ninjaDTO.setRanque(ninjaModel.getRanque());
-        ninjaDTO.setNome(ninjaModel.getNome());
-
-
-        return ninjaDTO;
-    }
 }
