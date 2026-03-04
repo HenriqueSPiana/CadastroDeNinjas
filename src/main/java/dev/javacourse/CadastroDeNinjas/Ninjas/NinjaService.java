@@ -1,5 +1,7 @@
 package dev.javacourse.CadastroDeNinjas.Ninjas;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,12 +22,10 @@ public class NinjaService {
     }
 
     //listar Todos os ninjas
-    public List<NinjaDTO> listarNinjas(String nome, Integer idade, String ranque){
+    public Page<NinjaDTO> listarNinjas(String nome, Integer idade, String ranque, Pageable pageable){
 
-        List<NinjaModel> ninjas = ninjaRepository.findNinjasComFiltros(nome, idade, ranque);
-        return ninjas.stream()
-                .map(ninjaMapper::map)
-                .collect(Collectors.toList());
+        Page<NinjaModel> ninjas = ninjaRepository.findNinjasComFiltros(nome, idade, ranque, pageable);
+        return ninjas.map(ninjaMapper::map) ;
 
     };
 

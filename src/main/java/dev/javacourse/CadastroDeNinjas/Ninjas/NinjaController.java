@@ -1,5 +1,10 @@
 package dev.javacourse.CadastroDeNinjas.Ninjas;
+import dev.javacourse.CadastroDeNinjas.core.dto.PageResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,12 +38,16 @@ private final NinjaService ninjaService;
     @Operation(summary = "Lista ninjas",
             description = "Lista todos os ninjas cadastrados")
     @GetMapping("/listar")
-    public List<NinjaDTO> listarNinjas(
+    public PageResponseDTO<NinjaDTO> listarNinjas(
             @RequestParam(required = false) String nome,
             @RequestParam(required = false) Integer idade,
-            @RequestParam(required = false) String ranque
+            @RequestParam(required = false) String ranque,
+            @ParameterObject
+            @PageableDefault(page = 0, size = 10, sort = "nome") Pageable pageable
     ){
-        return ninjaService.listarNinjas(nome,idade,ranque);
+        Page<NinjaDTO> paginaDeNinjas  = ninjaService.listarNinjas(nome,idade,ranque,pageable);
+        return new PageResponseDTO<>(paginaDeNinjas);
+
     }
 
     @Operation(summary = "Lista ninjas por ID",

@@ -1,4 +1,6 @@
 package dev.javacourse.CadastroDeNinjas.Ninjas;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,8 +13,9 @@ public interface NinjaRepository extends JpaRepository<NinjaModel, Long> {
             "(:nome IS NULL OR n.nome LIKE %:nome%) AND " +
             "(:idade IS NULL OR n.idade = :idade) AND " +
             "(:ranque IS NULL OR n.ranque = :ranque)")
-    List<NinjaModel> findNinjasComFiltros(@Param("nome") String nome,
+    Page<NinjaModel> findNinjasComFiltros(@Param("nome") String nome,
                                           @Param("idade") Integer idade,
-                                          @Param("ranque") String ranque);
-
+                                          @Param("ranque") String ranque,
+                                            Pageable pageable
+    );
 }
