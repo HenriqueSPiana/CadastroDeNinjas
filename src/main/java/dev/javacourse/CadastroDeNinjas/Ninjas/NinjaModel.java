@@ -26,7 +26,7 @@ public class NinjaModel {
     private String email;
 
     @Column(name = "idade")
-    private int idade;
+    private Integer idade;
 
     @Column(name = "ranque")
     private String ranque;

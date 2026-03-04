@@ -33,8 +33,12 @@ private final NinjaService ninjaService;
     @Operation(summary = "Lista ninjas",
             description = "Lista todos os ninjas cadastrados")
     @GetMapping("/listar")
-    public List<NinjaDTO> listarNinjas(){
-        return ninjaService.listarNinjas();
+    public List<NinjaDTO> listarNinjas(
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) Integer idade,
+            @RequestParam(required = false) String ranque
+    ){
+        return ninjaService.listarNinjas(nome,idade,ranque);
     }
 
     @Operation(summary = "Lista ninjas por ID",

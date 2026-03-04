@@ -20,8 +20,9 @@ public class NinjaService {
     }
 
     //listar Todos os ninjas
-    public List<NinjaDTO> listarNinjas(){
-        List<NinjaModel> ninjas = ninjaRepository.findAll();
+    public List<NinjaDTO> listarNinjas(String nome, Integer idade, String ranque){
+
+        List<NinjaModel> ninjas = ninjaRepository.findNinjasComFiltros(nome, idade, ranque);
         return ninjas.stream()
                 .map(ninjaMapper::map)
                 .collect(Collectors.toList());
